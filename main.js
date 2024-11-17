@@ -41,11 +41,12 @@
   var output = results
     .map(([team, ow, ib, m]) => {
       let chunk = [team.join("")];
-      if (ow.length) chunk.push(`+${ow.join("")}`);
-      if (ib.length) chunk.push(`-${ib.join("")}`);
+      if (ib.length) chunk.push(`${ib.join("")}-`);
+      if (ow.length) chunk.push(`${ow.join("")}+`);
+      let s = chunk.join(" ");
       if (m?.length)
-        chunk.push(m.map((success) => (success ? "O" : "X")).join(""));
-      return chunk.join(" ");
+        s += "\n" + m.map((success) => (success ? "o" : "x")).join("");
+      return s;
     })
     .join("\n");
 
